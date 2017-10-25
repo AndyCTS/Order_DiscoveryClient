@@ -1,5 +1,6 @@
 # Overview of the service in the current implementation
-This service acts as an interface to the shopping cart of a simple online shopping application. The physical manifestation of the cart is implemented on a RabbitMQ. Each of the orders are mapped to a single shopping session and the OrderMaster POJO has a placeholder to physically contain the orders. 
+This service exposes the REST endpoints to have the order-producer tested. 
+
 
 # Salient features developed
 1) Service Discovery
