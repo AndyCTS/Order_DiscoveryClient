@@ -17,8 +17,7 @@ This particular service exposes the REST endpoints to have the order-producer te
 4) Solution orchestration using AMQP for event provisioning and consuming.
 
 # Architecture Diagram
-![Architecture Overview - Shopping cart application]
-(/images/Shopping-cart-architecture.png)
+![Architecture Overview - Shopping cart application](/images/Shopping-cart-architecture.png?raw=true)
 
 
 
