@@ -1,9 +1,11 @@
 # Overview of the problem which we are trying to solve
-The problem which is attempted to solve here is the physical manifestation of a shopping cart as a message queue in RaabitMQ. The holistic architecture of the problem is as mentioned below in the archhitecture diagram.
+The problem which is attempted to solve here is a small online shopping cart application where physical manifestation of the cart happens as a message queue in RaabitMQ. The holistic architecture is given below.
 
-Since this problem as of now is more on setting the technical infrastructure to help build the application in future - hence there is a very limited applicability of JUnit based test cases. 
-
-This particular service exposes the REST endpoints to have the order-producer tested. It hard codes a particular Order Master POJO and calls the REST API endpoint of the producer - which serializes and writes this POJO to a RabbitMQ in PCF. 
+Note:
+1) The JUnits will be accompanying all the business case scenarios.
+2) For all technical / infra use cases JUnits will not be used.
+3) This particular service acts as a client to test the REST endpoint of the order-producer. It hard codes a particular Order - creating a POJO and calls this REST endpoint to serialize and push the POJO to RabbitMQ in PCF. 
+4) The RabbitListener service consumes the JSon and de-serializes it back to POJO to save the order onto the shipping database. 
 
 
 # Salient features developed
