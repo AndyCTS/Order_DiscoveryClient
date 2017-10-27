@@ -7,6 +7,13 @@ Note:
 3) This particular service acts as a client to test the REST endpoint of the order-producer. It hard codes a particular Order - creating a POJO and calls this REST endpoint to serialize and push the POJO to RabbitMQ in PCF. 
 4) The RabbitListener service consumes the JSon and de-serializes it back to POJO to save the order onto the shipping database. 
 
+Usage to test the application:
+http://service-discoverer.app.dev.digifabricpcf.com/discover/post
+[Currently the orders are hardcoded onto the POJO's]
+
+The url posts a JSON to the order-producer service which writes it to the RabbitMQ. 
+The order-consumer service picks it up from the RabbitMQ and creates an order in the MySQL database by saving the JSON.
+
 
 # Salient features developed
 1) Service Discovery
