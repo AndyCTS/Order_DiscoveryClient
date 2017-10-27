@@ -1,6 +1,8 @@
 package com.shoppingcart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -24,20 +26,23 @@ public class OrderDiscoveryController {
 	}
 	
 	@RequestMapping(value="/post")
-	public OrderMaster discoverAndPost() {
+	public ResponseEntity<OrderMaster> discoverAndPost() {
 		
 		// Generating a sample test order 
 		OrderMaster orderParameter = new OrderDataGenerator().generateData();
+		
+		
 		System.out.println("\n\n\n***** Retrieving EurekaURL ***** \n\n\n");
 		String AppURL = discoveryClient.getNextServerFromEureka("ORDER-PRODUCER", false).getHomePageUrl();
-//		String AppURL = "http://order-producer-fortypenny-gummite.app.dev.digifabricpcf.com/";
 
 		AppURL = AppURL + "Order/putOrderToQueue";
 		System.out.println("\n\n\n***** Before Calling postForObject ***** EurekaURL: " + AppURL + "\n\n\n");
+		System.out.println("\n\n\n***** Order parameter passed ***** : " + orderParameter + "\n\n\n");
+
 		OrderMaster returnParameter = restTemplate.postForObject(AppURL, orderParameter, OrderMaster.class);
 		System.out.println("\n\n\n***** After Calling postForObject *****" + returnParameter +" \n\n\n");
 
-		return returnParameter;
+		return new ResponseEntity<OrderMaster>(returnParameter, HttpStatus.OK);
 		
 	}
 	
